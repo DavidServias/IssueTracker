@@ -1,4 +1,4 @@
-import { Project, User, ProjectSummary} from '../model/models.js';
+import { Project, User, ProjectSummary, Issue} from '../model/models.js';
 
 
 // route: router.get('/:project_id', projectController.getProjectById);
@@ -42,16 +42,34 @@ const createProject = async (req, res) => {
   await user.save();
   res.status(200).send(newProject);
 
-  
+};
+
+//router.post('/add_issue/:project_id', projectController.addIssue);
+const addIssue = async (req, res) => {
+  const projectId = req.params.project_id;
+  const newIssue = new Issue({
+    issue_title: req.body.issue_title,
+    issue_description: req.body.issue_description,
+    //issue_status: req.body.issue_status,
+    //issue_priority: req.body.issue_priority,
+    //issue_creator: req.body.issue_creator,
+    //issue_assignee: req.body.issue_assignee,
+    //issue_created_date: req.body.issue_created_date,
+    //issue_due_date: req.body.issue_due_date,
+    //issue_completed_date: req.body.issue_completed_date
+  });
+
+  let project = await Project.findById(projectId);
+  project.issue_list.push(newIssue);
+  await project.save();
+  res.status(200).send(newIssue);
+
 };
   
   
-  
-
-
-
 
 export default {
   getProjectById,
-  createProject
+  createProject,
+  addIssue
 }

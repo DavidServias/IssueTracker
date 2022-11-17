@@ -100,12 +100,4 @@ const createProject = async (title, description, user_id) => {
   });
   const data = await response.json();
   return data;
-
-  // const body = await response.text();
-  // console.log(body);
-  // if (body === 'success') {
-  //   return ['success'];
-  // } else {
-  //   return ['error', body];
-  // }
 }

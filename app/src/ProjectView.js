@@ -46,7 +46,10 @@ export function ProjectView(props) {
    
     project ? 
     <div>
-      <NewIssue open={formOpen} setFormOpen={setFormOpen} />
+      <NewIssue 
+        open={formOpen} 
+        setFormOpen={setFormOpen} 
+        projectId={project._id}/>
       <h2>Project Title: {project.project_title}</h2>
       <p>Description: {project.project_description}</p>
       <h3>Issues:</h3>
